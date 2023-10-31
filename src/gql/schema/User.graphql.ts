@@ -8,17 +8,13 @@ type User {
   age: Int!
   carModel: String!
   drivingExperienceYears: Int!
-  quotes: [Quote]
 },
 
 input UserInput {
-     
   name: String!
   age: Int!
   carModel: String!
   drivingExperienceYears: Int!
-  quotes: [QuoteInput]
-
 },
 
 type Mutation {

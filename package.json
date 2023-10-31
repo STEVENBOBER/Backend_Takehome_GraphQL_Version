@@ -4,10 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/server.ts",
+    "start": "npx ts-node src/server",
+    "start:dev": "npx nodemon src/server.ts",
+    "postinstall": "tsc",
     "mock:server": "json-server --watch ./json-server/generateInsuranceQuotes.js",
     "codegen:sql": "npx pgtyped -w -c config.json",
-    "test": "jest"
+    "test": "jest --detectOpenHandles"
   },
   "repository": {
     "type": "git",
@@ -21,6 +23,8 @@
   },
   "homepage": "https://github.com/STEVENBOBER/Backend_Takehome_GraphQL_Version#readme",
   "devDependencies": {
+    "@graphql-tools/mock": "^9.0.0",
+    "@graphql-tools/schema": "^10.0.0",
     "@pgtyped/cli": "^2.3.0",
     "@types/cors": "^2.8.15",
     "@types/jest": "^29.5.6",

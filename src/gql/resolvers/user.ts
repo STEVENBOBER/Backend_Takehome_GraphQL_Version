@@ -2,14 +2,14 @@ import { determineInsuranceEchelon } from "../../utils/determineInsuranceEchelon
 import { userService } from "../../services";
 import { quoteService } from '../../services';
 import { IInsertUserResult } from '../../db/sql/insertUser.queries';
-import { GraphQLError } from 'graphql';
+import { GraphQLError } from "graphql/error";
 
 interface RelevantQuote {
   provider: string;
   price: number;
 }
 
-const resolvers = {
+export const userResolver = {
   Mutation: {
     insertUser: async (parent: any, args: any, context: any) => {
       const { input } = args
@@ -17,7 +17,7 @@ const resolvers = {
       let savedUser: IInsertUserResult | null
 
       if (!input) {
-        throw new GraphQLError('Missing user input')
+        throw new GraphQLError('Missing user input');
       }
 
       savedUser = await userService.insertUser(input)
@@ -40,15 +40,10 @@ const resolvers = {
           });
           return insertedQuote;
         })
-      ).then((values) => {
-        // console.log(values, `values`)
-        return values
-      })
+      ).then((values) => { return values })
 
       return savedUser
-
     }
   },
 }
 
-export default resolvers;
