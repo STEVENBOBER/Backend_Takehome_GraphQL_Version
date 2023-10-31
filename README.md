@@ -18,7 +18,7 @@ The original challenge is also public on my Github: `https://github.com/STEVENBO
 
 
 # Usage 
-Just click the link in the terminal when the server is started.: `http://localhost:4000/graphql`,
+Just click the link in the terminal when the server is started: `http://localhost:4000/graphql`,
 to head to the GraphQL Playground. You can then hit `insertUser` with a payload like this.
 
 {
@@ -28,4 +28,4 @@ to head to the GraphQL Playground. You can then hit `insertUser` with a payload 
     "yearsOfDrivingExperience": 15
 }
 
-This will return a userId -- hit the Query with the recently created `id` to query the quotes.
+This will return a userId -- hit the Query:`getBestThreeQuotesByUserId` with the recently created `id` to query the quotes.
