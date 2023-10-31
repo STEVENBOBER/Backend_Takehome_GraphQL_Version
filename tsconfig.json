@@ -19,23 +19,3 @@
     ]
   },
 }
-// "compilerOptions": {
-//   "target": "ES2016",
-//   "module": "esnext",
-//   "strict": true,
-//   "outDir": "dist",
-//   "lib": [
-//     "esnext"
-//   ],
-//   "esModuleInterop": true,
-//   "moduleResolution": "node",
-//   "resolveJsonModule": true,
-//   "typeRoots": [
-//     "./node_modules/@types",
-//     "./types"
-//   ],
-//   "types": [
-//     "node",
-//     // "jest"
-//   ]
-// },

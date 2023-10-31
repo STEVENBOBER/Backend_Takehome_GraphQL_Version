@@ -1,15 +1,13 @@
-import NodeCache from "node-cache";
 import { quoteService } from "../../services";
-import { GraphQLError } from "graphql";
+import { GraphQLError } from "graphql/error";
 
-const myCache = new NodeCache({ stdTTL: 100, checkperiod: 60 });
 
-const resolvers = {
+
+export const userQuote = {
   Mutation: {
     insertQuote: async (parent: any, args: any, context: any) => {
       const { input } = args
-      // console.log(input, `inputQuote`)
-      const savedQuote = quoteService.insertQuote(input);
+      const savedQuote = await quoteService.insertQuote(input);
       return savedQuote
     }
   },
@@ -17,23 +15,13 @@ const resolvers = {
     getBestThreeQuotesByUserId: async (parent: any, args: any, context: any) => {
       const { userId } = args
 
-      const bestThree = await quoteService.getBestThreeQuotesByUserId(userId);
-
-      const cachedBestThree = myCache.get(JSON.stringify(userId));
-
       if (!userId) {
-        throw new GraphQLError("Missing userId parameter")
+        throw new GraphQLError('Missing userId parameter');
       }
 
-      if (cachedBestThree) {
-        myCache.set(JSON.stringify(userId), bestThree);
-        return;
-      }
-
+      const bestThree = await quoteService.getBestThreeQuotesByUserId(userId);
       return bestThree
     }
   }
 
 }
-
-export default resolvers;
